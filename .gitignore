@@ -3,6 +3,8 @@
 
 ### Python ###
 /venv
+## Pyroomacoustics ##
+*.png
 
 ### C++ ###
 # Prerequisites
