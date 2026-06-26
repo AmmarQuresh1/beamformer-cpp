@@ -5,6 +5,7 @@
 /venv
 ## Pyroomacoustics ##
 *.png
+*.wav
 
 ### C++ ###
 # Prerequisites
