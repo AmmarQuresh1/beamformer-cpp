@@ -25,9 +25,14 @@ room.add_microphone_array(mic_locs)
 
 room.simulate()
 
-audio_reverb = room.mic_array.to_wav('data/sim_arctic_b0540.wav', norm=True, bitdepth=np.int16)
+audio_reverb = room.mic_array.to_wav('data/sim.wav', norm=True, bitdepth=np.int16)
 
 rt60_m = room.measure_rt60()
-print("The desired RT60 was {}".format(rt60))
-print("The measured RT60 is {}".format(rt60_m[1, 0]))
+
+
+data_file = open("data/info_sim.wav.txt", "w")
+data_file.write("The desired RT60 was {}".format(rt60))
+data_file.write("\nThe measured RT60 is {}".format(rt60_m[1, 0]))
+data_file.write(f"\nThe frequency is {fs}")
+data_file.close()
 
