@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
     0.01513119534 seconds to reach microphone (~5.19m at 343m/s) , first ~242 frames will be near zero (0.0151... * 16000 = 242) 
     75422 frames = 4.7~ seconds of audio
     */
-    if (argc < 2) return -1;
+    if (argc < 2) { std::cout<<"Provide wav file path\n"; return -1; }
 
     const char* path = argv[1];
     
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
         }
         std::cout << '\n';
     }
-
+    
     /*
     
     */
