@@ -3,9 +3,15 @@ import matplotlib.pyplot as plt
 import pyroomacoustics as pra 
 from scipy.io import wavfile
 import os
+import scipy
 
 fs, audio = wavfile.read('data/arctic_b0540.wav') # returns rate, data 
+fs2, audio2 = wavfile.read('data/airplane_noise.wav')
+n = round(len(audio2) * fs / fs2)          # preserve duration: 24k -> 16k
+audio2 = scipy.signal.resample(audio2, n)
+audio2 = audio2.mean(axis=1)
 room_dim = [10, 10, 10] # metres
+
 
 rt60 = 0.5
 e_absorption, max_order = pra.inverse_sabine(rt60, room_dim)
@@ -13,6 +19,7 @@ e_absorption, max_order = pra.inverse_sabine(rt60, room_dim)
 room = pra.ShoeBox(room_dim, fs=fs, materials=pra.Material(e_absorption), max_order=max_order, use_rand_ism=True, air_absorption=True)
 
 room.add_source([5,5,5], signal=audio)
+room.add_source([5,9,2], signal=audio2)
 
 mic_locs = np.c_[
     [2, 2, 2], # mic 1
