@@ -1,3 +1,0 @@
-The desired RT60 was 0.5
-The measured RT60 is 0.37587961724310204
-The frequency is 16000

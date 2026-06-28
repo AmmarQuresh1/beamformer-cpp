@@ -1,8 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c++,cmake
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,cmake
 
-### Clang ###
-.clangd
+## generated outputs ##
+data/delay_and_sum_sim.wav
+data/info_sim.wav.txt
+data/sim.wav
 
 ### Python ###
 /venv
