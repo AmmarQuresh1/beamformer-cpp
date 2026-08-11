@@ -100,11 +100,17 @@ Output was also checked audibly against the clean source.
 
 ## Notes
 
-An early version computed delays with the sample rate hardcoded as 1600 instead of
-16000, producing shifts an order of magnitude too small. The bug was isolated by
-flipping the sign of the shifts: if the delays were correct, reversing them should have
-made the output measurably worse. It did not, which showed the shifts were too small to
-be doing anything, and pointed at the sample rate rather than the geometry.
+An early version produced a beamformed output whose average amplitude was
+indistinguishable from the raw, unaligned signal — a sign the computed delays
+were too small to have any effect, since a working beamformer should sum
+coherent target energy across microphones and let incoherent energy cancel.
+
+The cause was a sample-rate mismatch: the reference input file was at
+44.1 kHz, while the beamformer's delay calculations assumed the 16 kHz rate
+that `pyroomacoustics` writes. Regenerating the simulated scene at the
+correct 16 kHz sample rate and recomputing the delays produced a measurable
+gain in output amplitude over the raw signal, consistent with the alignment
+now doing real work.
 
 ## Limitations
 
